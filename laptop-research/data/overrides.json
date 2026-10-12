@@ -1,0 +1,50 @@
+{
+ "https://www.amazon.in/dp/B0G4DHT2C4": {
+  "exclude": true,
+  "ram_gb": 16,
+  "storage_gb": 512,
+  "note": "Title says 32GB/1TB but the listing's own spec table and bullets say 8GB soldered + 8GB SO-DIMM, 512GB, max 24GB (Lenovo 83K000B8IN). Third-party seller 'Laptop Hub..' - seller-modified or mislabelled."
+ },
+ "https://www.amazon.in/dp/B0GWQHQB4T": {
+  "single_channel": true,
+  "note": "HP spec bullet: 24 GB DDR5-5600 (1 x 24 GB) - a single stick, so single-channel until a second module is added. Sold by Clicktech, ships from Amazon."
+ },
+ "https://www.amazon.in/dp/B0H2DDPLWY": {
+  "single_channel": true,
+  "note": "HP spec bullet: 24 GB DDR5-5600 (1 x 24 GB) - single-channel."
+ },
+ "https://www.amazon.in/dp/B0HJRPY8RY": {
+  "note": "Lenovo V15 (2026) sold as 'Lenovo 15'. 24GB DDR5-5600 in 2 SO-DIMM slots (max 32GB per listing), 15.6in FHD 300-nit matte, 42Wh, RJ45. Sold by DEALS IT INDIA, ships from Amazon (FBA), 10-day return. New listing, no reviews yet.",
+  "ram_type": "DDR5"
+ },
+ "https://www.amazon.in/dp/B0FCY7BTCX": {
+  "note": "8GB soldered + 16GB SO-DIMM DDR5-4800 (max 24GB), 1TB + second M.2 2242 slot.",
+  "ram_type": "DDR5"
+ },
+ "https://www.flipkart.com/lenovo-ideapad-slim-3-backlit-keyboard-mso-2024-intel-core-i5-13th-gen-13420h-24-gb-1-tb-ssd-windows-11-home-15irh10-thin-light-laptop/p/itm0d5d0630f37d2?pid=COMHDYG7TFGZRMFZ": {
+  "note": "Same 15IRH10 config as Amazon B0FCY7BTCX: 8GB soldered + 16GB SO-DIMM (max 24GB), 1TB + second M.2 2242 slot, 15.3in WUXGA 300-nit, 50Wh, 1.59kg."
+ },
+ "https://www.amazon.in/dp/B0G48KV4YP": {
+  "note": "8GB soldered + 8GB SO-DIMM DDR5-4800, max 24GB."
+ },
+ "https://www.flipkart.com/asus-expertbook-p3-ai-pc-ir-cam-1-yr-adp-intel-core-ultra-7-255h-16-gb-512-gb-ssd-windows-11-home-p3406ccap-ly0127ws-thin-light-laptop/p/itmcb7fa44f486da?pid=COMHM9URNKQZA3YY": {
+  "note": "P3406: 2x DDR5 SO-DIMM, up to 64GB (third-party spec sheets), Thunderbolt 4, 14in WUXGA 300-nit, 50Wh, 1.49kg, MIL-STD-810H."
+ },
+ "https://www.flipkart.com/asus-expertbook-p3-ai-pc-1-yr-adp-intel-core-ultra-7-255h-16-gb-512-gb-ssd-windows-11-home-p3406ccap-ly0161ws-thin-light-laptop/p/itm4e82eadf48819?pid=COMHHT9G9QC9CABY": {
+  "note": "P3406: 2x DDR5 SO-DIMM, up to 64GB (third-party spec sheets), Thunderbolt 4, 14in WUXGA 300-nit, 50Wh, 1.49kg, MIL-STD-810H."
+ },
+ "https://www.amazon.in/dp/B0H8P8CFQ4": {
+  "note": "X1607CA: 16GB soldered + 1 free DDR5 SO-DIMM slot (ASUS spec), max 32GB."
+ },
+ "https://www.flipkart.com/asus-vivobook-16-2025-office-2024-m365-basic-ai-pc-intel-core-ultra-5-series-2-225h-16-gb-512-gb-ssd-windows-11-home-x1607ca-mb142ws-thin-light-laptop/p/itm6e5fc45e4e812?pid=COMH89EBYFHZZGMH": {
+  "note": "X1607CA: 16GB soldered + 1 free DDR5 SO-DIMM slot (ASUS spec), max 32GB."
+ },
+ "https://www.amazon.in/dp/B0HFMXBSV7": {
+  "note": "Acer TravelLite TL05-41M: 32GB DDR4 (max 32GB), 15W Ryzen 7 7730U, 15.6in FHD, 1.55kg. Sold by SellerNow, no reviews.",
+  "ram_type": "DDR4"
+ },
+ "https://www.amazon.in/dp/B0H58R2QQX": {
+  "note": "Acer TravelLite TL05-41M: 32GB DDR4 (max 32GB), 15W Ryzen 7 7730U, 15.6in FHD, 1.55kg. No reviews.",
+  "ram_type": "DDR4"
+ }
+}
