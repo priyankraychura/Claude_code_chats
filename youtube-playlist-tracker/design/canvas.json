@@ -1,0 +1,30 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-10-29T16:30:00Z"},
+  "title": "Playlist Tracker App Design",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 390, "h": 844, "title": "Home", "is_interactive": true, "radius": 44},
+    "Playlist.dc.html": {"x": 470, "y": 0, "w": 390, "h": 844, "title": "Playlist", "is_interactive": true, "radius": 44},
+    "Player.dc.html": {"x": 940, "y": 0, "w": 390, "h": 844, "title": "Player", "is_interactive": true, "radius": 44},
+    "Stats.dc.html": {"x": 1410, "y": 0, "w": 390, "h": 844, "title": "Stats", "is_interactive": true, "radius": 44},
+    "Import.dc.html": {"x": 1880, "y": 0, "w": 390, "h": 844, "title": "Add playlist", "is_interactive": true, "radius": 44},
+    "Light.dc.html": {"x": 2350, "y": 0, "w": 390, "h": 844, "title": "Home, light theme", "is_interactive": true, "radius": 44},
+    "Reverse.dc.html": {"x": 2820, "y": 0, "w": 390, "h": 844, "title": "Playlist, newest first", "is_interactive": true, "radius": 44},
+    "Onboarding.dc.html": {"x": 0, "y": 1244, "w": 390, "h": 844, "title": "Onboarding", "is_interactive": true, "radius": 44},
+    "Mix.dc.html": {"x": 470, "y": 1244, "w": 390, "h": 844, "title": "New mix", "is_interactive": true, "radius": 44},
+    "Settings.dc.html": {"x": 940, "y": 1244, "w": 390, "h": 844, "title": "Settings", "is_interactive": true, "radius": 44},
+    "Widgets.dc.html": {"x": 1410, "y": 1244, "w": 900, "h": 690, "title": "Home-screen widgets"},
+    "Fullscreen.dc.html": {"x": 0, "y": 2488, "w": 844, "h": 390, "title": "Full-screen player", "is_interactive": true, "radius": 44},
+    "Chapters.dc.html": {"x": 924, "y": 2488, "w": 390, "h": 844, "title": "Player, chapters", "is_interactive": true, "radius": 44},
+    "Speed.dc.html": {"x": 1394, "y": 2488, "w": 390, "h": 844, "title": "Player, speed", "is_interactive": true, "radius": 44}
+  },
+  "order": ["Main.dc.html", "Playlist.dc.html", "Player.dc.html", "Stats.dc.html", "Import.dc.html", "Light.dc.html", "Onboarding.dc.html", "Mix.dc.html", "Settings.dc.html", "Widgets.dc.html", "Fullscreen.dc.html", "Chapters.dc.html", "Speed.dc.html", "Reverse.dc.html"],
+  "notes": {
+    "rowTitle": {"x": 0, "y": -260, "text": "Chapter: every screen is live, press Play on any frame", "kind": "title1", "maxW": 3210},
+    "row2Title": {"x": 0, "y": 984, "text": "Onboarding, mixes, settings and widgets", "kind": "title1", "maxW": 2310},
+    "row3Title": {"x": 0, "y": 2228, "text": "The player: full screen, chapters and speed", "kind": "title1", "maxW": 1784}
+  },
+  "designSystems": []
+}

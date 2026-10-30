@@ -1,60 +1,95 @@
-# YouTube Playlist Progress Tracker — Idea Notes
+# Chapter: YouTube Playlist Tracker
 
-> A progress tracker for YouTube playlists: always know where you left off,
-> what you've finished, and what's next.
+> Always know where you left off, what you've finished, and what's next in any YouTube playlist.
 
-## Chosen approach
+**Status:** idea and interactive design prototype. No app code yet.
 
-Our own Android app (not a full YouTube clone) with our own UI for playlists and
-progress, playing videos through **YouTube's official embedded player**.
+- Design prototype: https://claude.ai/artifact/9jR9mhHjqkqmkESZr62DoW (private until shared)
+- Design source files: [`design/`](design/README.md)
 
-- Because the player is ours, we know exact playback position, when a video
-  ends, and the last video watched in each playlist.
-- Must follow YouTube API terms: keep YouTube's ads/controls, no downloads,
-  no background playback.
-- Fallback / lite mode: "Open in YouTube" via deep link with timestamp
-  (`?t=754`) plus manual mark watched.
-- Possible later add-on: read Android media session (Notification Access) to
-  detect videos watched in the real YouTube app (title-only, needs matching).
-- Rejected as core: overlay + Accessibility Service (fragile, Play Store risk).
+## Decisions
 
-Constraint to remember: the YouTube Data API does **not** expose watch history
-or per-video watch progress, so all tracking data lives in our app.
+- **Name:** Chapter. Play Store listing "Chapter: Playlist Tracker". Backups: Pickup, Onward, Watchmark. Check Play Store availability first.
+- **Platform:** Android first.
+- **Business model:** paid, one-time purchase on the Play Store. No paywall screen, no subscription. Settings says "You own Chapter, and every future update is included."
+- **Approach:** our own app and UI around YouTube's official embedded player. Not a YouTube clone, and no overlay or accessibility-service tricks.
 
-## Core features (v1)
+## YouTube constraints that shape the product
 
-- Import a playlist by link or from the user's YouTube account
-- Per-playlist progress ("14 / 52 watched – 27%")
-- **Continue where I left off**: one tap resumes the last video at the exact second
-- Per-video status: Not started / In progress (12:30) / Watched
-- Manual mark watched / unwatched, incl. bulk ("mark all above as watched")
-- Auto-mark watched at ~90% played
+- The YouTube Data API does not expose a user's watch history or watch progress, so all progress is tracked inside the app.
+- The embedded player keeps YouTube's ads and branding. No downloads.
+- No background playback or picture-in-picture outside the app (YouTube terms). The in-app mini player covers this.
+- Apps cannot set video quality: the IFrame API quality functions have done nothing since October 2019. YouTube picks quality from player size and connection. The design shows an "Auto · 1080p" badge and a button that opens YouTube's own player menu. **To verify when building:** whether that menu offers quality inside an Android WebView embed.
+- Playlists are imported with the YouTube Data API v3. Each playlist item's upload date (`contentDetails.videoPublishedAt`) lets the app detect newest-first playlists.
 
-## Nice later
+## Features (all designed in the prototype)
 
-- Home screen with "Continue watching" across all playlists
-- Notes / bookmarks at timestamps (great for courses)
-- Hide watched videos / show only unfinished
-- Watch streaks, daily goals, estimated time left ("3h 20m remaining")
-- Custom playlists mixing videos from different YouTube playlists
-- Cross-device sync
-- Home-screen widget showing the next video
+### Core tracking
+- Add a playlist by link, or import from the user's YouTube account, with a live preview.
+- Home: "Continue watching" card that resumes at the exact second, playlists with progress, weekly goal.
+- Playlist screen: progress ring, Continue/Start button, filters (All / Up next / Watched).
+- Each video shows not started / in progress / watched. Tap the circle to toggle watched.
+- Video menu: mark watched or unwatched, mark all above as watched, reset progress, open in YouTube at the saved time.
+- Auto-mark as watched at 80%, 90% (default), 95% or the end.
+- Undo on every bulk or destructive action.
+- Reverse order per playlist, plus a "looks newest first" suggestion. The chosen order drives episode numbers, Continue, Up next, autoplay, "mark all above" and mixes.
 
-## Data model (conceptual)
+### Player
+- Opens as a sheet over the app. Swipe down to minimise into a mini player.
+- Tap to show or hide controls (they auto-hide after about 3 seconds). Double-tap left or right to skip ±10s, with a ripple; more taps add 10s each.
+- Drag the timeline to scrub, with a bubble showing time and chapter.
+- Chapters: segmented timeline, current-chapter row, Chapters tab (done / now / upcoming).
+- Notes and one-tap bookmarks pinned to timestamps, shown as dots on the timeline.
+- Speed 0.75× to 2× (shows the time saved), sleep timer (end of video, 15, 30, 60 min), captions toggle, "Ends at" clock.
+- Full screen: the video rotates into landscape. Lock controls, side panels for speed and quality, "Up next" countdown card.
+- Quality: Auto badge and "Choose in YouTube's menu" button.
+- Ambient glow behind the video, slow zoom while playing.
 
-- **Playlist**: id, title, thumbnail, videos, lastOpenedVideo
-- **Video**: id, title, duration, playlistId
-- **Progress** (per video): status, lastPositionSeconds, lastWatchedAt, notes
+### Library, stats and more
+- Library grid with Completed and Mix badges.
+- Mixes: combine unwatched videos from any playlists. Progress is shared with the original videos.
+- Stats: streak, week of day dots, weekly bar chart, goal ring, totals.
+- Settings: watched threshold, autoplay next, rewind 5s on resume, weekly goal, daily reminder, sync across devices, export to CSV, theme (System / Dark / Light), accent colour, replay the welcome tour.
+- Onboarding: 3 animated steps, no sign-up, ends on "Add your first playlist".
+- Home-screen widgets: 4×2 continue, 2×2 progress ring, 2×2 streak, 4×3 continue with up next, 4×2 light theme.
+
+## Design system
+
+- **Look:** dark first, with a full light theme. Near-black background, one warm accent.
+- **Dark colours:** background #0A0A0D, surface #15151A, raised surface #22222A, text #F3F3F5, muted text #A3A3AE.
+- **Light colours:** background #F3F3F6, surface #FFFFFF, raised surface #E8E8EE, text #111116, muted text #5B5B67.
+- **Accent:** Ember #FF7A45 by default. Alternatives: Iris #8B7CFF, Mint #3DDC97, Sky #4DA3FF. Accent text and rings are darkened or lightened automatically to keep contrast at 4.5:1 for text and 3:1 for graphics.
+- **Fonts (Google Fonts):** Bricolage Grotesque for headings, Geist for UI text, Geist Mono for times and numbers.
+- **Motion:** screens and sheets use ease-out `cubic-bezier(.22,1,.36,1)` over about 500–600 ms. Small pops (checks, toggles, badges) use a springy `cubic-bezier(.34,1.56,.64,1)`. Lists cascade in at about 35 ms per row.
+- **Accessibility:** touch targets at least 44 px, labels on icon-only buttons.
+
+## Data model
+
+- **Playlist:** id, title, channel, art, videos, addedAt, reversed, newestFirst (detected), orderOk (suggestion dismissed).
+- **Mix:** id, title, refs (video ids), art, addedAt, reversed. Progress lives on the original videos.
+- **Video:** id, n (position), title, duration, pos (seconds), watched, lastAt.
+- **Note:** id, videoId, t (seconds), text ("Bookmark" for quick bookmarks).
+- **Chapters:** parsed from timestamps in the video description.
+- **Settings:** threshold, autoNext, rewind5, goalHours, reminder, sync, theme, accent.
+
+## Suggested stack (decide in the new repo)
+
+- Kotlin and Jetpack Compose. Room for local data, WorkManager for reminders, Glance for widgets.
+- YouTube IFrame player in a WebView (for example the open-source android-youtube-player library). YouTube Data API v3 for import: an API key, plus OAuth for "Import from my account".
+- Sync: Google sign-in with the Drive app-data folder, or Firebase. Choose later.
+
+## Open questions and next steps
+
+- Confirm the name is free on the Play Store.
+- Check that the embedded player's own menu offers quality on Android.
+- Read the YouTube API Services Terms and branding guidelines before building.
+- Price: [YOUR PRICE].
+- Try the closest competitor for a few days and note what's missing: Playlist Progress (Android), https://play.google.com/store/apps/details?id=com.ojasx.eduplay
 
 ## Existing apps (as of Oct 2026)
 
-- Playlist Progress (Android, new, learning-focused):
-  https://play.google.com/store/apps/details?id=com.ojasx.eduplay
+- Playlist Progress (Android, new, learning-focused): https://play.google.com/store/apps/details?id=com.ojasx.eduplay
 - Web tools: SyncStudy, TrackMyCourse, PlayTrackr, playlist.tools
-- Open source reference: https://github.com/ZackSatrday/PLAYCE
+- Open-source reference: https://github.com/ZackSatrday/PLAYCE
 
-Differentiators to aim for: in-app player with automatic tracking,
-cross-playlist "continue watching", widget, use beyond study
-(podcasts, series, long video essays).
-
-Next step: try Playlist Progress for a few days and note what's missing.
+Where Chapter stands out: in-app player with automatic tracking, "continue watching" across playlists, widgets, mixes, and use beyond studying (podcasts, series, long video essays).
